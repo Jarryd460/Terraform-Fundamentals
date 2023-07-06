@@ -1,5 +1,5 @@
 # Terraform-Fundamentals
-An example repository of working with Terraform
+An example repository of working with Terraform. This repository followed https://www.youtube.com/watch?v=7xngnjfIlK4. The repository can be found at https://github.com/sidpalas/devops-directive-terraform-course.
 
 ### Description
 Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enables developers to use a high-level configuration language called HCL (HashiCorp Configuration Language) to describe the desired “end-state” cloud or on-premises infrastructure for running an application. It then generates a plan for reaching that end-state and executes the plan to provision the infrastructure. Unlike Cloud Formation (AWS), Azure Resource Manager (Microsoft Azure) and Google Cloud Deployment Manager (Google) which is specific to the cloud provider, Terraform is agnostic and can be used with multiple cloud providers. Pulumi is another agnostic IaC.
@@ -29,5 +29,21 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
 * Once the results have been reviewed, you can apply them by running "terraform apply".
 * To undo what has been applied, you can run "terraform destroy".
 
+##### Files and directory overview
+* .terraform - contains the code of the downloaded providers specified in main.tf.
+* terraform.tfstate - contains metadata about what resources and data has been deployed to the provider via terraform as well as sensitive information like database password. This can be stored locally as in this scenario or in the cloud which allows collaboration easy with other developers.
+    * Terraform Cloud
+    * Self-managed such as AWS
+* terraform.lock.hcl - contains the specific dependencies and providers that are installed in this directory.
+
 ##### 02-Overview
 * The main.tf is the most basic terraform configuration that you can have. It creates a EC2 instance running Ubuntu.
+
+##### 03-Basics
+###### aws-backend
+* The main.tf setups an S3 bucket as well as a Dynamo DB to host and manage the terraform.tfstate file so that multiple people cannot run apply at the same time and cause unwanted results.
+* To do the above, we need to do some bootstrapping.
+    * We first apply the file with the backend section left out.
+    * We then add the backend section and run init.
+###### terraform-cloud-backend
+* The main.tf hosts the terraform.tfstate file on terraform cloud platform.
