@@ -1,5 +1,5 @@
 # Terraform-Fundamentals
-An example repository of working with Terraform. This repository followed https://www.youtube.com/watch?v=7xngnjfIlK4. The repository can be found at https://github.com/sidpalas/devops-directive-terraform-course.
+An example repository of working with Terraform (https://developer.hashicorp.com/terraform). This repository followed https://www.youtube.com/watch?v=7xngnjfIlK4. The repository can be found at https://github.com/sidpalas/devops-directive-terraform-course.
 
 ### Description
 Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enables developers to use a high-level configuration language called HCL (HashiCorp Configuration Language) to describe the desired “end-state” cloud or on-premises infrastructure for running an application. It then generates a plan for reaching that end-state and executes the plan to provision the infrastructure. Unlike Cloud Formation (AWS), Azure Resource Manager (Microsoft Azure) and Google Cloud Deployment Manager (Google) which is specific to the cloud provider, Terraform is agnostic and can be used with multiple cloud providers. Pulumi is another agnostic IaC.
@@ -47,3 +47,10 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * We then add the backend section and run init.
 ###### terraform-cloud-backend
 * The main.tf hosts the terraform.tfstate file on terraform cloud platform.
+###### 04-variables-and-outputs
+* The main.tf local variables which are used in specifying the resources to create
+* We also create a variables.tf file that holds all our input variables that we have declared.
+* The values for those variables are set in terraform.tfvars (terraform looks for this file by default) but can also be set in any other file. You will need to explicity specify the file using -var-file={file path}
+    * You can also set variables via environment variables by using TF_VAR_{variable name}
+    * Another approach is to use *.auto.tfvars
+    * YOu can also set variables using -var="myvariable=variablevalue" -var="myvariable2=variable2value"
