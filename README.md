@@ -36,6 +36,16 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * Self-managed such as AWS
 * terraform.lock.hcl - contains the specific dependencies and providers that are installed in this directory.
 
+##### Modules
+* It is a way to bundle up terraform configuration files so that they are reusable else where.
+* Examples of some locations of where there modules can be found are:
+    * Local path
+    * Terraform registry
+    * Bibucket/GitHub
+    * Git repositories
+    * Http urls
+    * S3 and GCS buckets
+
 ##### 02-Overview
 * The main.tf is the most basic terraform configuration that you can have. It creates a EC2 instance running Ubuntu.
 
