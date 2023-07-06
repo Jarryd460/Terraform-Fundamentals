@@ -64,3 +64,12 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * You can also set variables via environment variables by using TF_VAR_{variable name}
     * Another approach is to use *.auto.tfvars
     * YOu can also set variables using -var="myvariable=variablevalue" -var="myvariable2=variable2value"
+
+###### 05-language-features
+* Contains a README.md file specifying the expressions and functions supported by terraform.
+
+###### 06-Organization-and-modules
+* Modules are a way to bundle up common deployment structures than can be reused with slight differences which can be exposed via variables.
+* main.tf from consul consumes a module from consul from git
+* web-app-module encapsulates the common configuration we want to deploy with various variables exposed so that we can slightly changed the naming and configuration of various resources.
+* web-app consumes web-app-module and deploys to apps and specifies the values for the various exposed values.
