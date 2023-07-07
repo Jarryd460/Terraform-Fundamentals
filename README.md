@@ -57,7 +57,7 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * We then add the backend section and run init.
 ###### terraform-cloud-backend
 * The main.tf hosts the terraform.tfstate file on terraform cloud platform.
-###### 04-variables-and-outputs
+##### 04-variables-and-outputs
 * The main.tf local variables which are used in specifying the resources to create
 * We also create a variables.tf file that holds all our input variables that we have declared.
 * The values for those variables are set in terraform.tfvars (terraform looks for this file by default) but can also be set in any other file. You will need to explicity specify the file using -var-file={file path}
@@ -65,11 +65,38 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * Another approach is to use *.auto.tfvars
     * YOu can also set variables using -var="myvariable=variablevalue" -var="myvariable2=variable2value"
 
-###### 05-language-features
+##### 05-language-features
 * Contains a README.md file specifying the expressions and functions supported by terraform.
 
-###### 06-Organization-and-modules
+##### 06-Organization-and-modules
 * Modules are a way to bundle up common deployment structures than can be reused with slight differences which can be exposed via variables.
 * main.tf from consul consumes a module from consul from git
 * web-app-module encapsulates the common configuration we want to deploy with various variables exposed so that we can slightly changed the naming and configuration of various resources.
 * web-app consumes web-app-module and deploys to apps and specifies the values for the various exposed values.
+
+##### 07-Managing-multiple-environments
+###### Workspaces
+* Worspaces are a way to deploy and manage mulitple environments. 
+* The advantages are:
+    * Easy to get started.
+    * Convenient terraform.workspace expression.
+    * Minimizes code duplication.
+* The disadvantages are:
+    * Prone to human error. You could be on the incorrect workspace and deploy to wrong environment.
+    * State stored within same backend.
+    * Codebase doesn't unambiguously show deployment configurations.
+* Using workspaces we deploy our application to multiple environments. Depending on the workspace enviornment you will see that there are checks for production and then anything else named.
+* To view your workspaces run "terraform workspace list".
+* To create a new workspace run "terraform workspace new {workspace name}".
+* To destroy a workspace run "terraform destroy".
+* To switch to a different workspace run "terraform workspace select {workspace name}".
+###### File-Structure
+* You can use the file structure approach to manage multiple environments as well.
+* The advantages are:
+    * Isolation of backends.
+        * Improved security.
+        * Decreased potential for human error.
+    * Codebase fully represents deployed state.
+* The disadvantages are:
+    * Multiple terraform apply required to provision environments
+    * More code duplication, but can be minimized with modules.
