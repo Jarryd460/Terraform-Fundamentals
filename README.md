@@ -46,6 +46,12 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
     * Http urls
     * S3 and GCS buckets
 
+##### Static Checks
+* You can use various commands to validate your IaC namely:
+    * terraform fmt
+    * terraform validate
+    * terraform plan
+
 ##### 02-Overview
 * The main.tf is the most basic terraform configuration that you can have. It creates a EC2 instance running Ubuntu.
 
@@ -100,3 +106,9 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
 * The disadvantages are:
     * Multiple terraform apply required to provision environments
     * More code duplication, but can be minimized with modules.
+
+##### 08-Testing
+* You need to ensure that your IaC is correct which means it requires some level of testing.
+* You can test by doing some static checking. See README.md.
+* You could also automate testing by creating a script file and have that execute your init, plan, apply and destroy terraform commands.
+* Another approach is to use terratest with Go as the programming language and rewrite the above script.
