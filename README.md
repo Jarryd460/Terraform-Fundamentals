@@ -112,3 +112,7 @@ Terraform is an open-source Infrastructure-As-Code software tool (IaC) that enab
 * You can test by doing some static checking. See README.md.
 * You could also automate testing by creating a script file and have that execute your init, plan, apply and destroy terraform commands.
 * Another approach is to use terratest with Go as the programming language and rewrite the above script.
+
+##### Other tools
+* Cloud-nuke is a tool for cleaning up all resources for an account so that you not charged for resources not used.
+* Terragrunt is a wrapper library for terraform which provides additional tools and capabilities.
